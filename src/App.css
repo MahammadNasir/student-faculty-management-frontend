@@ -1,0 +1,124 @@
+/* Global Styles for Landing Page, Navbar, Footer, and generic layouts */
+
+/* We assume fonts are imported in Dashboard.css or index.css, but we'll import here just in case */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Reusable Animated Background (Different hue from dashboards for distinction) */
+.animated-bg-home {
+    background: linear-gradient(-45deg, #1f4037, #99f2c8, #4e54c8, #8f94fb);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: white;
+}
+
+/* Navbar Glassmorphism */
+.navbar-glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 15px 0;
+    transition: all 0.3s ease;
+}
+
+.navbar-glass .navbar-brand {
+    font-size: 1.5rem;
+    background: -webkit-linear-gradient(45deg, #4e54c8, #8f94fb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+.navbar-glass .nav-link {
+    color: #333 !important;
+    font-weight: 600;
+    margin: 0 10px;
+    position: relative;
+}
+
+.navbar-glass .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: #4e54c8;
+    transition: width 0.3s ease;
+    -webkit-transition: width 0.3s ease;
+}
+
+.navbar-glass .nav-link:hover::after {
+    width: 100%;
+    left: 0;
+    background: #4e54c8;
+}
+
+/* Home Page Specifics */
+.hero-section {
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+}
+
+.hero-section h1 {
+    font-size: 4rem;
+    letter-spacing: -1.5px;
+    text-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.feature-section {
+    padding: 100px 20px;
+    background: #fff;
+}
+
+.feature-card {
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    padding: 30px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border-color: #8f94fb;
+}
+
+/* Modern Form Inputs (For Login and AddUser) */
+.glass-input {
+    background: rgba(255, 255, 255, 0.6) !important;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(0,0,0,0.1) !important;
+    border-radius: 12px !important;
+    padding: 12px 20px !important;
+    transition: all 0.3s ease !important;
+}
+
+.glass-input:focus {
+    background: #fff !important;
+    border-color: #8f94fb !important;
+    box-shadow: 0 0 0 4px rgba(143, 148, 251, 0.2) !important;
+}
+
+/* Footer Styling */
+.footer-modern {
+    background: #111;
+    color: #eee;
+    padding: 40px 0 20px 0;
+    border-top: 5px solid #4e54c8;
+}
