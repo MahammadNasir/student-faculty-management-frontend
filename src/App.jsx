@@ -11,7 +11,7 @@ import { ProtectedRoute } from './Components/ProtectedRoute'
 function App() {
   return (
     <>
-      {/* <Router>
+      <Router>
 
         <Routes>
 
@@ -40,8 +40,7 @@ function App() {
           } />
         </Routes>
 
-      </Router> */}
-      <AddUser />
+      </Router>
     </>
   )
 }
