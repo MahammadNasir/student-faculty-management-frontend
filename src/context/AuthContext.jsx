@@ -1,5 +1,5 @@
 import { createContext, useContext, useMemo, useState } from "react";
-import { authApi } from "../services/api.js";
+import api from "../services/api.js";
 
 const AuthContext = createContext(null);
 const STORAGE_KEY = "sfms_auth";
@@ -31,7 +31,7 @@ export function AuthProvider({ children }) {
   const [session, setSession] = useState(readStoredSession);
 
   async function login(email, password) {
-    const { data } = await authApi.login({ email, password });
+    const { data } = await api.post("/auth/login", { email, password });
     const next = { token: data.token, user: data };
     if (!isValidSession(next)) {
       throw new Error("Invalid login response.");

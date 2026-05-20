@@ -1,7 +1,17 @@
 import axios from "axios";
-import { getStoredToken } from "../context/AuthContext.jsx";
 
 const API_URL = import.meta.env.VITE_API_URL;
+const STORAGE_KEY = "sfms_auth";
+
+function getStoredToken() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw)?.token : null;
+  } catch {
+    localStorage.removeItem(STORAGE_KEY);
+    return null;
+  }
+}
 
 const api = axios.create({
   baseURL: API_URL || "/api",
