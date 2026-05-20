@@ -4,11 +4,18 @@ import { authApi } from "../services/api.js";
 const AuthContext = createContext(null);
 const STORAGE_KEY = "sfms_auth";
 
-export function AuthProvider({ children }) {
-  const [session, setSession] = useState(() => {
+function readStoredSession() {
+  try {
     const raw = localStorage.getItem(STORAGE_KEY);
     return raw ? JSON.parse(raw) : null;
-  });
+  } catch {
+    localStorage.removeItem(STORAGE_KEY);
+    return null;
+  }
+}
+
+export function AuthProvider({ children }) {
+  const [session, setSession] = useState(readStoredSession);
 
   async function login(email, password) {
     const { data } = await authApi.login({ email, password });
@@ -38,6 +45,5 @@ export function useAuth() {
 }
 
 export function getStoredToken() {
-  const raw = localStorage.getItem(STORAGE_KEY);
-  return raw ? JSON.parse(raw).token : null;
+  return readStoredSession()?.token ?? null;
 }
